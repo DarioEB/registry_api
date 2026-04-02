@@ -1,5 +1,6 @@
 # Binaries
 registry-dashboard-api
+registry_dashboard_api
 *.exe
 *.exe~
 *.dll

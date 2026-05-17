@@ -1,10 +1,12 @@
 package config
 
 import (
-	"os"
 	"strings"
 	"testing"
 )
+
+// jwtSecretValid is a 32-character secret that satisfies the minimum-length requirement.
+const jwtSecretValid = "test-jwt-secret-min-32-chars-ok!!"
 
 // requiredVarNames lists all env vars that config.Load() requires.
 var requiredVarNames = []string{
@@ -23,7 +25,7 @@ func setAllEnv(t *testing.T, overrides map[string]string) {
 		"DB_NAME":                 "testdb",
 		"DB_USER":                 "testuser",
 		"DB_PASSWORD":             "testpass",
-		"JWT_SECRET":              "testsecret",
+		"JWT_SECRET":              jwtSecretValid,
 		"REGISTRY_URL":            "http://localhost:5000",
 		"REGISTRY_ADMIN_USER":     "admin",
 		"REGISTRY_ADMIN_PASSWORD": "adminpass",
@@ -45,7 +47,6 @@ func TestLoad_AllVarsPresent(t *testing.T) {
 		t.Fatalf("expected no error, got: %v", err)
 	}
 
-	// Verify every field is mapped correctly
 	checks := map[string]struct{ got, want string }{
 		"Port":               {cfg.Port, "8080"},
 		"DBHost":             {cfg.DBHost, "localhost"},
@@ -53,7 +54,7 @@ func TestLoad_AllVarsPresent(t *testing.T) {
 		"DBName":             {cfg.DBName, "testdb"},
 		"DBUser":             {cfg.DBUser, "testuser"},
 		"DBPassword":         {cfg.DBPassword, "testpass"},
-		"JWTSecret":          {cfg.JWTSecret, "testsecret"},
+		"JWTSecret":          {cfg.JWTSecret, jwtSecretValid},
 		"RegistryURL":        {cfg.RegistryURL, "http://localhost:5000"},
 		"RegistryAdminUser":  {cfg.RegistryAdminUser, "admin"},
 		"RegistryAdminPass":  {cfg.RegistryAdminPass, "adminpass"},
@@ -66,11 +67,52 @@ func TestLoad_AllVarsPresent(t *testing.T) {
 	}
 }
 
+func TestLoad_JWTSecret_TooShort_ReturnsError(t *testing.T) {
+	setAllEnv(t, map[string]string{"JWT_SECRET": "tooshort"})
+
+	_, err := Load()
+	if err == nil {
+		t.Fatal("expected error for short JWT_SECRET, got nil")
+	}
+	if !strings.Contains(err.Error(), "JWT_SECRET") {
+		t.Errorf("error should mention JWT_SECRET, got: %q", err.Error())
+	}
+}
+
+func TestLoad_CookieSecure_DefaultsFalse(t *testing.T) {
+	setAllEnv(t, nil)
+	// Use t.Setenv("", "") to ensure COOKIE_SECURE is empty (t.Setenv auto-restores on cleanup).
+	t.Setenv("COOKIE_SECURE", "")
+
+	cfg, err := Load()
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if cfg.CookieSecure {
+		t.Error("expected CookieSecure to be false when COOKIE_SECURE is empty")
+	}
+}
+
+func TestLoad_CookieSecure_TrueWhenSet(t *testing.T) {
+	setAllEnv(t, nil)
+	t.Setenv("COOKIE_SECURE", "true")
+
+	cfg, err := Load()
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if !cfg.CookieSecure {
+		t.Error("expected CookieSecure to be true when COOKIE_SECURE=true")
+	}
+}
+
 func TestLoad_MissingRequiredVar(t *testing.T) {
 	for _, varName := range requiredVarNames {
 		t.Run("missing_"+varName, func(t *testing.T) {
 			setAllEnv(t, nil)
-			os.Unsetenv(varName)
+			// Use t.Setenv with empty string — config.Load() treats "" as missing.
+			// This avoids os.Unsetenv which modifies the global environment without cleanup.
+			t.Setenv(varName, "")
 
 			_, err := Load()
 			if err == nil {

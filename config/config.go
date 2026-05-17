@@ -19,6 +19,8 @@ type Config struct {
 	RegistryAdminUser  string
 	RegistryAdminPass  string
 	CORSAllowedOrigins string
+	HtpasswdPath       string
+	CookieSecure       bool // set to true in production behind nginx with HTTPS
 }
 
 // Load reads configuration from environment variables.
@@ -46,6 +48,7 @@ func Load() (*Config, error) {
 		{"REGISTRY_ADMIN_USER", &cfg.RegistryAdminUser},
 		{"REGISTRY_ADMIN_PASSWORD", &cfg.RegistryAdminPass},
 		{"CORS_ALLOWED_ORIGINS", &cfg.CORSAllowedOrigins},
+		{"HTPASSWD_PATH", &cfg.HtpasswdPath},
 	}
 
 	for _, r := range required {
@@ -55,6 +58,14 @@ func Load() (*Config, error) {
 		}
 		*r.dest = val
 	}
+
+	// JWT_SECRET must be at least 32 characters to provide adequate HMAC-SHA256 security.
+	if len(cfg.JWTSecret) < 32 {
+		return nil, fmt.Errorf("JWT_SECRET must be at least 32 characters (got %d)", len(cfg.JWTSecret))
+	}
+
+	// Optional: COOKIE_SECURE defaults to false for local dev; set to "true" in production.
+	cfg.CookieSecure = envdeb.Get("COOKIE_SECURE") == "true"
 
 	return cfg, nil
 }

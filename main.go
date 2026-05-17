@@ -15,6 +15,9 @@ import (
 	"gorm.io/gorm"
 
 	"registry_dashboard_api/config"
+	"registry_dashboard_api/handlers"
+	"registry_dashboard_api/middleware"
+	"registry_dashboard_api/services"
 )
 
 func main() {
@@ -37,19 +40,51 @@ func main() {
 	// 3. Database
 	db := connectDB(cfg, logger)
 	logger.Info("Database connected")
-	_ = db // will be used by handlers in subsequent stories
 
 	// 4. Migrations
 	runMigrations(cfg, logger)
 	logger.Info("Migrations applied")
 
-	// 5. Router
+	// 5. Services
+	authService := services.NewAuthService(db, cfg.JWTSecret)
+	imageService := services.NewImageService(cfg.RegistryURL, cfg.RegistryAdminUser, cfg.RegistryAdminPass)
+	gcService := services.NewGCService(db, imageService, logger)
+	htpasswdService := services.NewHtpasswdService(cfg.HtpasswdPath, db, logger)
+	userService := services.NewUserService(db, htpasswdService, logger)
+
+	// 6. Handlers
+	authHandler := handlers.NewAuthHandler(authService, cfg.CookieSecure)
+	imageHandler := handlers.NewImageHandler(imageService, logger)
+	gcHandler := handlers.NewGCHandler(gcService, logger)
+	userHandler := handlers.NewUserHandler(userService, logger)
+
+	// 7. Router
 	r := gin.Default()
+
+	// CORS must be registered before any route so preflight OPTIONS requests are handled.
+	r.Use(middleware.CORSMiddleware(cfg.CORSAllowedOrigins))
+
+	// Public endpoints
 	r.GET("/health", func(c *gin.Context) {
 		c.JSON(200, gin.H{"status": "ok"})
 	})
+	r.POST("/api/auth/login", authHandler.Login)
 
-	// 6. Start server
+	// Protected group — all authenticated routes, including logout.
+	protected := r.Group("/api").Use(middleware.AuthMiddleware(authService))
+	protected.POST("/auth/logout", authHandler.Logout)
+	protected.GET("/images", imageHandler.ListImages)
+	protected.GET("/images/:imageName/tags", imageHandler.ListImageTags)
+	protected.POST("/gc/run", gcHandler.RunGC)
+	protected.GET("/gc/status", gcHandler.GetStatus)
+	protected.GET("/gcConfig", gcHandler.GetConfig)
+	protected.PUT("/gcConfig", gcHandler.UpdateConfig)
+	protected.GET("/users", userHandler.ListUsers)
+	protected.POST("/users", userHandler.CreateUser)
+	protected.PUT("/users/:username", userHandler.UpdatePassword)
+	protected.DELETE("/users/:username", userHandler.DeleteUser)
+
+	// 8. Start server
 	addr := fmt.Sprintf(":%s", cfg.Port)
 	logger.Info("Server listening", "addr", addr)
 	if err := r.Run(addr); err != nil {

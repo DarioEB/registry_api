@@ -1,0 +1,60 @@
+{"time":"2026-04-04T10:21:36.384892515-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/images","error":"registry unavailable: connection refused"}
+{"time":"2026-04-04T10:21:36.385039802-03:00","level":"ERROR","msg":"failed to list images","endpoint":"/api/images","error":"unexpected JSON decode error"}
+{"time":"2026-04-04T10:21:36.385456967-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/images/:imageName/tags","imageName":"myapp","error":"registry unavailable: timeout"}
+{"time":"2026-04-04T10:21:36.385652514-03:00","level":"ERROR","msg":"failed to list image tags","endpoint":"/api/images/:imageName/tags","imageName":"myapp","error":"unexpected error"}
+{"time":"2026-04-04T10:21:41.863120298-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/images","error":"registry unavailable: connection refused"}
+{"time":"2026-04-04T10:21:41.863193465-03:00","level":"ERROR","msg":"failed to list images","endpoint":"/api/images","error":"unexpected JSON decode error"}
+{"time":"2026-04-04T10:21:41.863367162-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/images/:imageName/tags","imageName":"myapp","error":"registry unavailable: timeout"}
+{"time":"2026-04-04T10:21:41.863441191-03:00","level":"ERROR","msg":"failed to list image tags","endpoint":"/api/images/:imageName/tags","imageName":"myapp","error":"unexpected error"}
+{"time":"2026-04-04T11:02:44.962145782-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/images","error":"registry unavailable: connection refused"}
+{"time":"2026-04-04T11:02:44.962229079-03:00","level":"ERROR","msg":"failed to list images","endpoint":"/api/images","error":"unexpected JSON decode error"}
+{"time":"2026-04-04T11:02:44.962383108-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/images/:imageName/tags","imageName":"myapp","error":"registry unavailable: timeout"}
+{"time":"2026-04-04T11:02:44.962440767-03:00","level":"ERROR","msg":"failed to list image tags","endpoint":"/api/images/:imageName/tags","imageName":"myapp","error":"unexpected error"}
+{"time":"2026-04-04T11:03:04.260586871-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/images","error":"registry unavailable: connection refused"}
+{"time":"2026-04-04T11:03:04.260652724-03:00","level":"ERROR","msg":"failed to list images","endpoint":"/api/images","error":"unexpected JSON decode error"}
+{"time":"2026-04-04T11:03:04.260789532-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/images/:imageName/tags","imageName":"myapp","error":"registry unavailable: timeout"}
+{"time":"2026-04-04T11:03:04.260853091-03:00","level":"ERROR","msg":"failed to list image tags","endpoint":"/api/images/:imageName/tags","imageName":"myapp","error":"unexpected error"}
+{"time":"2026-04-04T17:50:02.58526077-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/gc/run","error":"registry unavailable"}
+{"time":"2026-04-04T17:50:02.585338297-03:00","level":"ERROR","msg":"failed to start GC","endpoint":"/api/gc/run","error":"something broke"}
+{"time":"2026-04-04T17:50:02.585480498-03:00","level":"ERROR","msg":"failed to get GC config","endpoint":"/api/gcConfig","error":"db error"}
+{"time":"2026-04-04T17:50:02.585754899-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/images","error":"registry unavailable: connection refused"}
+{"time":"2026-04-04T17:50:02.585815504-03:00","level":"ERROR","msg":"failed to list images","endpoint":"/api/images","error":"unexpected JSON decode error"}
+{"time":"2026-04-04T17:50:02.585948687-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/images/:imageName/tags","imageName":"myapp","error":"registry unavailable: timeout"}
+{"time":"2026-04-04T17:50:02.585984024-03:00","level":"ERROR","msg":"failed to list image tags","endpoint":"/api/images/:imageName/tags","imageName":"myapp","error":"unexpected error"}
+{"time":"2026-04-04T17:50:13.306070205-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/gc/run","error":"registry unavailable"}
+{"time":"2026-04-04T17:50:13.306148884-03:00","level":"ERROR","msg":"failed to start GC","endpoint":"/api/gc/run","error":"something broke"}
+{"time":"2026-04-04T17:50:13.306374783-03:00","level":"ERROR","msg":"failed to get GC config","endpoint":"/api/gcConfig","error":"db error"}
+{"time":"2026-04-04T17:50:13.30673609-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/images","error":"registry unavailable: connection refused"}
+{"time":"2026-04-04T17:50:13.306838485-03:00","level":"ERROR","msg":"failed to list images","endpoint":"/api/images","error":"unexpected JSON decode error"}
+{"time":"2026-04-04T17:50:13.307029818-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/images/:imageName/tags","imageName":"myapp","error":"registry unavailable: timeout"}
+{"time":"2026-04-04T17:50:13.307081106-03:00","level":"ERROR","msg":"failed to list image tags","endpoint":"/api/images/:imageName/tags","imageName":"myapp","error":"unexpected error"}
+{"time":"2026-04-04T17:55:36.527948778-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/gc/run","error":"registry unavailable"}
+{"time":"2026-04-04T17:55:36.527990708-03:00","level":"ERROR","msg":"failed to start GC","endpoint":"/api/gc/run","error":"something broke"}
+{"time":"2026-04-04T17:55:36.528106979-03:00","level":"ERROR","msg":"failed to get GC config","endpoint":"/api/gcConfig","error":"db error"}
+{"time":"2026-04-04T17:55:36.528350131-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/images","error":"registry unavailable: connection refused"}
+{"time":"2026-04-04T17:55:36.528408512-03:00","level":"ERROR","msg":"failed to list images","endpoint":"/api/images","error":"unexpected JSON decode error"}
+{"time":"2026-04-04T17:55:36.528540342-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/images/:imageName/tags","imageName":"myapp","error":"registry unavailable: timeout"}
+{"time":"2026-04-04T17:55:36.528577473-03:00","level":"ERROR","msg":"failed to list image tags","endpoint":"/api/images/:imageName/tags","imageName":"myapp","error":"unexpected error"}
+{"time":"2026-04-04T17:55:41.014826805-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/gc/run","error":"registry unavailable"}
+{"time":"2026-04-04T17:55:41.014872672-03:00","level":"ERROR","msg":"failed to start GC","endpoint":"/api/gc/run","error":"something broke"}
+{"time":"2026-04-04T17:55:41.015011196-03:00","level":"ERROR","msg":"failed to get GC config","endpoint":"/api/gcConfig","error":"db error"}
+{"time":"2026-04-04T17:55:41.015274446-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/images","error":"registry unavailable: connection refused"}
+{"time":"2026-04-04T17:55:41.015337305-03:00","level":"ERROR","msg":"failed to list images","endpoint":"/api/images","error":"unexpected JSON decode error"}
+{"time":"2026-04-04T17:55:41.015472382-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/images/:imageName/tags","imageName":"myapp","error":"registry unavailable: timeout"}
+{"time":"2026-04-04T17:55:41.015900686-03:00","level":"ERROR","msg":"failed to list image tags","endpoint":"/api/images/:imageName/tags","imageName":"myapp","error":"unexpected error"}
+{"time":"2026-04-06T13:16:44.230105415-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/gc/run","error":"registry unavailable"}
+{"time":"2026-04-06T13:16:44.231938773-03:00","level":"ERROR","msg":"failed to start GC","endpoint":"/api/gc/run","error":"something broke"}
+{"time":"2026-04-06T13:16:44.23216263-03:00","level":"ERROR","msg":"failed to get GC config","endpoint":"/api/gcConfig","error":"db error"}
+{"time":"2026-04-06T13:16:44.232553539-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/images","error":"registry unavailable: connection refused"}
+{"time":"2026-04-06T13:16:44.232644879-03:00","level":"ERROR","msg":"failed to list images","endpoint":"/api/images","error":"unexpected JSON decode error"}
+{"time":"2026-04-06T13:16:44.232830846-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/images/:imageName/tags","imageName":"myapp","error":"registry unavailable: timeout"}
+{"time":"2026-04-06T13:16:44.232879737-03:00","level":"ERROR","msg":"failed to list image tags","endpoint":"/api/images/:imageName/tags","imageName":"myapp","error":"unexpected error"}
+{"time":"2026-04-06T13:16:44.233323715-03:00","level":"ERROR","msg":"failed to list users","error":"db connection lost"}
+{"time":"2026-04-06T13:46:09.273491706-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/gc/run","error":"registry unavailable"}
+{"time":"2026-04-06T13:46:09.273533324-03:00","level":"ERROR","msg":"failed to start GC","endpoint":"/api/gc/run","error":"something broke"}
+{"time":"2026-04-06T13:46:09.273682463-03:00","level":"ERROR","msg":"failed to get GC config","endpoint":"/api/gcConfig","error":"db error"}
+{"time":"2026-04-06T13:46:09.27395278-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/images","error":"registry unavailable: connection refused"}
+{"time":"2026-04-06T13:46:09.274022501-03:00","level":"ERROR","msg":"failed to list images","endpoint":"/api/images","error":"unexpected JSON decode error"}
+{"time":"2026-04-06T13:46:09.274159317-03:00","level":"ERROR","msg":"registry unavailable","endpoint":"/api/images/:imageName/tags","imageName":"myapp","error":"registry unavailable: timeout"}
+{"time":"2026-04-06T13:46:09.274203681-03:00","level":"ERROR","msg":"failed to list image tags","endpoint":"/api/images/:imageName/tags","imageName":"myapp","error":"unexpected error"}
+{"time":"2026-04-06T13:46:09.274545371-03:00","level":"ERROR","msg":"failed to list users","error":"db connection lost"}
